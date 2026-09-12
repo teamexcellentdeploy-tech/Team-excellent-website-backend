@@ -17,7 +17,7 @@ const marksSchema = new mongoose.Schema(
 
     total: { type: Number, required: true },
     percentage: { type: Number },
-    scholarshipPercent: { type: Number, required: true }
+    scholarshipPercent: { type: Number }
   },
   { timestamps: true } 
 );

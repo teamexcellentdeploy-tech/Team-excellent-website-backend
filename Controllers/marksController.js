@@ -1,9 +1,5 @@
 import marksSchema from "../Models/marksModel.js";
 
-const calculateScholarship = (percentage) => {
-  return percentage >= 50 ? percentage : 50;
-};
-
 export const addMarks = async (req, res) => {
   try {
     const {
@@ -28,7 +24,6 @@ export const addMarks = async (req, res) => {
       Number(aptitude);
 
     const percentage = ((totalNum / 50) * 100).toFixed(2);
-    const scholarshipPercent = calculateScholarship(Number(percentage));
 
     const newMarks = await marksSchema.create({
       studentName,
@@ -44,7 +39,6 @@ export const addMarks = async (req, res) => {
       aptitude,
       total: totalNum,
       percentage,
-      scholarshipPercent,
     });
 
     res.status(201).json(newMarks);
@@ -84,11 +78,9 @@ export const updateMarks = async (req, res) => {
       Number(data.aptitude);
 
     const percentage = ((totalNum / 50) * 100).toFixed(2);
-    const scholarshipPercent = calculateScholarship(Number(percentage));
 
     data.total = totalNum;
     data.percentage = percentage;
-    data.scholarshipPercent = scholarshipPercent;
 
     const updated = await marksSchema.findByIdAndUpdate(id, data, { new: true });
     res.status(200).json(updated);
