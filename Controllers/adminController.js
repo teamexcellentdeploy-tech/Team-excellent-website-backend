@@ -58,8 +58,8 @@ export const loginAdmin = async (req, res) => {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
         
-        // Create JWT token and include role in the payload
-        const token = jwt.sign({ id: admin._id, role: admin.role }, JWT_SECRET, { expiresIn: '1h' });
+        // Create JWT token and include role in the payload (extended to 30 days so sessions don't expire unexpectedly)
+        const token = jwt.sign({ id: admin._id, role: admin.role }, JWT_SECRET, { expiresIn: '30d' });
         res.status(200).json({ message: 'Login successful', token });
     }
     catch (error) {
