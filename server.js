@@ -18,6 +18,7 @@ const app = express();
 const corsOptions = {
   origin: [
     "https://teamexcellentcareerinstitute.in",
+    "https://www.teamexcellentcareerinstitute.in",
     "http://localhost:3000",
     "http://localhost:5173",
     "http://localhost:5174",
